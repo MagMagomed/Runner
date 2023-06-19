@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3431491279903445237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2768285503625542883}
@@ -106,11 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2768285503625542883}
-  - component: {fileID: 2291984241282391837}
-  - component: {fileID: -3380398498363233225}
   - component: {fileID: -1612639221195771082}
   m_Layer: 0
-  m_Name: Collecatable_Package
+  m_Name: PickedUpPackage
   m_TagString: Package
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,48 +123,13 @@ Transform:
   m_GameObject: {fileID: 8498182317050036363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.05, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8784535691996568838}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2291984241282391837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498182317050036363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818a287135adb43b7b2081dfbdb7b2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SnapToGrid: 1
-  m_Sound: 2
-  m_Event: {fileID: 11400000, guid: adbed942ec533944f8460ff5e91e9357, type: 2}
-  m_Count: 1
---- !u!114 &-3380398498363233225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498182317050036363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba4ae32a6c4e4559afadd205d679bfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UsePositionBasedOffset: 1
-  PositionBasedScale: 2
-  Bob: 1
-  BobSpeed: 5
-  BobHeight: 0.2
-  Spin: 1
-  SpinSpeed: 180
 --- !u!65 &-1612639221195771082
 BoxCollider:
   m_ObjectHideFlags: 0

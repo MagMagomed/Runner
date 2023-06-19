@@ -112,3 +112,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_onPackagePickedUpListener:
     m_Event: {fileID: 11400000, guid: adbed942ec533944f8460ff5e91e9357, type: 2}
+  pickedUpPackagePrefab: {fileID: 8498182317050036363, guid: bfd86143462b98e43adaf44a4b062ce9,
+    type: 3}

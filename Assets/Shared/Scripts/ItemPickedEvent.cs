@@ -14,7 +14,6 @@ namespace HyperCasual.Gameplay
     {
         [HideInInspector]
         public int Count = -1;
-        
         public override void Reset()
         {
             Count = -1;
