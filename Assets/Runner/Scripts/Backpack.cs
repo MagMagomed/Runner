@@ -19,14 +19,6 @@ public class Backpack : MonoBehaviour
         m_onPackagePickedUpListener.Subscribe();
         m_onPackagePickedUpListener.EventHandler = PutPackageToTheBackpack;
     }
-    public void ShowPackageCount()
-    {
-        if (m_onPackagePickedUpListener.m_Event is ItemPickedEvent packagePickedEvent)
-        {
-            packageCount++;
-            Debug.Log(packageCount);
-        }
-    }
     public void PutPackageToTheBackpack()
     {
         if (m_onPackagePickedUpListener.m_Event is ItemPickedEvent packagePickedEvent)
