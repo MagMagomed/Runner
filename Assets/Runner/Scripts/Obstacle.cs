@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using HyperCasual.Core;
 using UnityEngine;
-
+using HyperCasual.Gameplay;
 namespace HyperCasual.Runner
 {
     /// <summary>
@@ -12,14 +12,17 @@ namespace HyperCasual.Runner
     [RequireComponent(typeof(Collider))]
     public class Obstacle : Spawnable
     {
+
+        public ObstacleCollisionEvent k_Event;
         const string k_PlayerTag = "Player";
-        
+
         void OnTriggerEnter(Collider col)
         {
-            if (col.CompareTag(k_PlayerTag))
-            {
-                GameManager.Instance.Lose();
-            }
+            if (!col.CompareTag(k_PlayerTag))
+                return;
+
+            k_Event.Raise();
+            gameObject.SetActive(false);
         }
     }
 }

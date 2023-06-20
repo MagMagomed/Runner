@@ -11,6 +11,8 @@ public class Backpack : MonoBehaviour
     [SerializeField]
     private GenericGameEventListener m_onPackagePickedUpListener;
     [SerializeField]
+    private GenericGameEventListener m_onObstacleCollisionListener;
+    [SerializeField]
     private GameObject pickedUpPackagePrefab;
 
     private int packageCount;
@@ -18,7 +20,33 @@ public class Backpack : MonoBehaviour
     {
         m_onPackagePickedUpListener.Subscribe();
         m_onPackagePickedUpListener.EventHandler = PutPackageToTheBackpack;
+
+        m_onObstacleCollisionListener.Subscribe();
+        m_onObstacleCollisionListener.EventHandler = OnObstacleCollisionHandler;
     }
+    public void OnObstacleCollisionHandler()
+    {
+        if (m_onPackagePickedUpListener.m_Event is ItemPickedEvent packagePickedEvent)
+        {
+            packageCount--;
+            DeletePackage();
+        }
+    }
+
+    private void DeletePackage()
+    {
+        GameObject child = null;
+        for (int i = transform.childCount - 1; i > -1; i--)
+        {
+            if (transform.GetChild(i).gameObject.CompareTag("Package"))
+            {
+                child = transform.GetChild(i).gameObject;
+                Destroy(child);
+                break;
+            }
+        }
+    }
+
     public void PutPackageToTheBackpack()
     {
         if (m_onPackagePickedUpListener.m_Event is ItemPickedEvent packagePickedEvent)
