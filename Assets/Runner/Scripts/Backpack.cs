@@ -29,29 +29,23 @@ public class Backpack : MonoBehaviour
     }
     public void PutPackage()
     {
-        if (transform.childCount < 1)
+        GameObject child = null;
+        for (int i = transform.childCount - 1; i > -1; i--)
         {
-            AddPackage();
-        }
-        else
-        {
-            GameObject child = null;
-            for(int i = transform.childCount - 1; i > -1; i--)
+            if (transform.GetChild(i).gameObject.CompareTag("Package"))
             {
-                if (transform.GetChild(i).gameObject.CompareTag("Package"))
-                {
-                    child = transform.GetChild(i).gameObject;
-                    break;
-                }
+                child = transform.GetChild(i).gameObject;
+                break;
             }
-            AddPackage(child);
         }
+        AddPackage(child);
     }
     public void AddPackage(GameObject lastPackage)
     {
         if (lastPackage == null)
         {
             AddPackage();
+            return;
         }
         var pickedUpPackage = Instantiate(pickedUpPackagePrefab);
         pickedUpPackage.transform.position = new Vector3(
