@@ -15,6 +15,8 @@ namespace HyperCasual.Gameplay
     public class Hud : View
     {
         [SerializeField]
+        TextMeshProUGUI m_PackagesText;
+        [SerializeField]
         TextMeshProUGUI m_GoldText;
         [SerializeField]
         Slider m_XpSlider;
@@ -48,7 +50,21 @@ namespace HyperCasual.Gameplay
         }
 
         float m_XpValue;
-        
+        private int m_TempPackages;
+
+        public int TempPackages 
+        {
+            get => m_TempPackages;
+            set
+            {
+                if (m_TempPackages != value)
+                {
+                    m_TempPackages = value;
+                    m_PackagesText.text = m_TempPackages.ToString();
+                }
+            }
+        }
+
         /// <summary>
         /// The amount of XP to display on the hud.
         /// The setter method also sets the hud slider value.
@@ -65,6 +81,7 @@ namespace HyperCasual.Gameplay
                 }
             }
         }
+
 
         void OnEnable()
         {

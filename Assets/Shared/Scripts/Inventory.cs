@@ -14,6 +14,8 @@ namespace HyperCasual.Runner
     public class Inventory : AbstractSingleton<Inventory>
     {
         [SerializeField]
+        GenericGameEventListener m_PackagePickedUpEventListener;
+        [SerializeField]
         GenericGameEventListener m_GoldEventListener;
         [SerializeField]
         GenericGameEventListener m_KeyEventListener;
@@ -23,6 +25,7 @@ namespace HyperCasual.Runner
         GenericGameEventListener m_LoseEventListener;
 
         int m_TempGold;
+        int m_TempPackages;
         int m_TotalGold;
         float m_TempXp;
         float m_TotalXp;
@@ -42,11 +45,13 @@ namespace HyperCasual.Runner
 
         void Start()
         {
+            m_PackagePickedUpEventListener.EventHandler = OnPickPackageUp;
             m_GoldEventListener.EventHandler = OnGoldPicked;
             m_KeyEventListener.EventHandler = OnKeyPicked;
             m_WinEventListener.EventHandler = OnWin;
             m_LoseEventListener.EventHandler = OnLose;
 
+            m_TempPackages = 0;
             m_TempGold = 0;
             m_TotalGold = SaveManager.Instance.Currency;
             m_TempXp = 0;
@@ -55,10 +60,24 @@ namespace HyperCasual.Runner
 
             m_LevelCompleteScreen = UIManager.Instance.GetView<LevelCompleteScreen>();
             m_Hud = UIManager.Instance.GetView<Hud>();
-        } 
+        }
+
+        private void OnPickPackageUp()
+        {
+            if (m_PackagePickedUpEventListener.m_Event is ItemPickedEvent packagePickedEvent)
+            {
+                m_TempPackages += packagePickedEvent.Count;
+                m_Hud.TempPackages = m_TempPackages;
+            }
+            else
+            {
+                throw new Exception($"Invalid event type!");
+            }
+        }
 
         void OnEnable()
         {
+            m_PackagePickedUpEventListener.Subscribe();
             m_GoldEventListener.Subscribe();
             m_KeyEventListener.Subscribe();
             m_WinEventListener.Subscribe();
@@ -67,6 +86,7 @@ namespace HyperCasual.Runner
 
         void OnDisable()
         {
+            m_PackagePickedUpEventListener.Unsubscribe();
             m_GoldEventListener.Unsubscribe();
             m_KeyEventListener.Unsubscribe();
             m_WinEventListener.Unsubscribe();
