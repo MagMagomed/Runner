@@ -101,6 +101,7 @@ namespace HyperCasual.Runner
 
         void OnDisable()
         {
+            m_FaceObstaclesEventListener.Unsubscribe();
             m_PackagePickedUpEventListener.Unsubscribe();
             m_GoldEventListener.Unsubscribe();
             m_KeyEventListener.Unsubscribe();
