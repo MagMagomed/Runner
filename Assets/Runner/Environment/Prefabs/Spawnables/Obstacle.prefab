@@ -112,4 +112,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SnapToGrid: 1
+  k_Count: 1
   k_Event: {fileID: 11400000, guid: 8978ab0404cfbd0488994390a7946261, type: 2}

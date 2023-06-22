@@ -11,7 +11,10 @@ using UnityEngine;
     menuName = "Runner/" + nameof(ObstacleCollisionEvent))]
 public class ObstacleCollisionEvent : AbstractGameEvent
 {
-    public override void Reset() {
-        
+    [HideInInspector]
+    public int Count = -1;
+    public override void Reset()
+    {
+        Count = -1;
     }
 }

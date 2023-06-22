@@ -14,6 +14,8 @@ namespace HyperCasual.Runner
     public class Inventory : AbstractSingleton<Inventory>
     {
         [SerializeField]
+        GenericGameEventListener m_FaceObstaclesEventListener;
+        [SerializeField]
         GenericGameEventListener m_PackagePickedUpEventListener;
         [SerializeField]
         GenericGameEventListener m_GoldEventListener;
@@ -45,6 +47,7 @@ namespace HyperCasual.Runner
 
         void Start()
         {
+            m_FaceObstaclesEventListener.EventHandler = OnFaceObstacles;
             m_PackagePickedUpEventListener.EventHandler = OnPickPackageUp;
             m_GoldEventListener.EventHandler = OnGoldPicked;
             m_KeyEventListener.EventHandler = OnKeyPicked;
@@ -74,9 +77,21 @@ namespace HyperCasual.Runner
                 throw new Exception($"Invalid event type!");
             }
         }
-
+        private void OnFaceObstacles()
+        {
+            if (m_FaceObstaclesEventListener.m_Event is ObstacleCollisionEvent obstacleCollisionEvent)
+            {
+                m_TempPackages -= obstacleCollisionEvent.Count;
+                m_Hud.TempPackages = m_TempPackages;
+            }
+            else
+            {
+                throw new Exception($"Invalid event type!");
+            }
+        }
         void OnEnable()
         {
+            m_FaceObstaclesEventListener.Subscribe();
             m_PackagePickedUpEventListener.Subscribe();
             m_GoldEventListener.Subscribe();
             m_KeyEventListener.Subscribe();

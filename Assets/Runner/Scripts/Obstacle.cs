@@ -12,7 +12,8 @@ namespace HyperCasual.Runner
     [RequireComponent(typeof(Collider))]
     public class Obstacle : Spawnable
     {
-
+        [SerializeField]
+        private int k_Count;
         public ObstacleCollisionEvent k_Event;
         const string k_PlayerTag = "Player";
 
@@ -21,6 +22,7 @@ namespace HyperCasual.Runner
             if (!col.CompareTag(k_PlayerTag))
                 return;
 
+            k_Event.Count = k_Count;
             k_Event.Raise();
             gameObject.SetActive(false);
         }

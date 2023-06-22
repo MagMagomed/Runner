@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3c9063ae27648e5bb39802427ca51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_FaceObstaclesEventListener:
+    m_Event: {fileID: 11400000, guid: 8978ab0404cfbd0488994390a7946261, type: 2}
   m_PackagePickedUpEventListener:
     m_Event: {fileID: 11400000, guid: adbed942ec533944f8460ff5e91e9357, type: 2}
   m_GoldEventListener:
