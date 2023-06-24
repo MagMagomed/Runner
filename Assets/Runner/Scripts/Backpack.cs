@@ -18,6 +18,10 @@ public class Backpack : MonoBehaviour
     private int packageCount;
     public void Start()
     {
+        if(gameObject == null)
+        {
+            Destroy(gameObject);
+        }
         m_onPackagePickedUpListener.Subscribe();
         m_onPackagePickedUpListener.EventHandler = PutPackageToTheBackpack;
 
@@ -98,5 +102,10 @@ public class Backpack : MonoBehaviour
                                                             transform.position.z
                                                         );
         pickedUpPackage.transform.SetParent(transform);
+    }
+    public void OnDestroy()
+    {
+        m_onPackagePickedUpListener.Unsubscribe();
+        m_onObstacleCollisionListener.Unsubscribe();
     }
 }
