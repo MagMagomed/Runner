@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 8617234690931488546, guid: 24e6103122814457297dc45d1ebd9d78, type: 3}
   - {fileID: 6720992300918251345, guid: f5969163fd24f4df09df4753595040b4, type: 3}
   - {fileID: 2034186197529953695, guid: d44d1b9822199404c9f82515a188ec6a, type: 3}
+  - {fileID: 8531358844173819125, guid: 12cc80829b5b91d4bab82e7c3a2a459f, type: 3}
   m_Levels:
   - {fileID: 11400000, guid: 33ced907333634bffa860034de1f4df9, type: 2}
   - {fileID: 11400000, guid: 6c8651e11d6d93b4384f11a3b8464b7b, type: 2}
@@ -64,6 +65,8 @@ MonoBehaviour:
   m_WinEvent: {fileID: 11400000, guid: 4facc4ba26e884ef88b6c2506fa5ae2c, type: 2}
   m_LoseEvent: {fileID: 11400000, guid: 2b6d3353ba4d84d3ca725ef1835ca96f, type: 2}
   m_PauseEvent: {fileID: 11400000, guid: 4bbf7a853b87f44299489a25eb0d9ce5, type: 2}
+  m_PauseShopOpenEvent: {fileID: 11400000, guid: 3c9a571c0323d1c4aa4bb0a6a9450012,
+    type: 2}
   m_SplashDelay: 1
 --- !u!114 &3832517329008096586
 MonoBehaviour:

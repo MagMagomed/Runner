@@ -1,6 +1,7 @@
 using Codice.CM.Common.Serialization.Replication;
 using HyperCasual.Core;
 using HyperCasual.Gameplay;
+using HyperCasual.Runner;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ public class Backpack : MonoBehaviour
         m_onObstacleCollisionListener.Subscribe();
         m_onObstacleCollisionListener.EventHandler = OnObstacleCollisionHandler;
     }
+
     public void OnObstacleCollisionHandler()
     {
         if (m_onPackagePickedUpListener.m_Event is ItemPickedEvent packagePickedEvent)
@@ -55,8 +57,11 @@ public class Backpack : MonoBehaviour
     {
         if (m_onPackagePickedUpListener.m_Event is ItemPickedEvent packagePickedEvent)
         {
-            packageCount++;
-            PutPackage();
+            if(SaveManager.Instance.BackpackCapacity >= packageCount)
+            {
+                packageCount++;
+                PutPackage();
+            }
         }
     }
     public void PutPackage()

@@ -22,6 +22,8 @@ namespace HyperCasual.Runner
         /// </summary>
         public static GameManager Instance => s_Instance;
         static GameManager s_Instance;
+        [SerializeField]
+        AbstractGameEvent m_pauseShopEvent;
 
         [SerializeField]
         AbstractGameEvent m_WinEvent;

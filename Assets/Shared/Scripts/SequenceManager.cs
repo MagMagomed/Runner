@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using HyperCasual.Core;
 using HyperCasual.Runner;
 using UnityEngine;
@@ -32,6 +33,8 @@ namespace HyperCasual.Gameplay
         AbstractGameEvent m_LoseEvent;
         [SerializeField]
         AbstractGameEvent m_PauseEvent;
+        [SerializeField]
+        AbstractGameEvent m_PauseShopOpenEvent;
         [Header("Other")]
         [SerializeField]
         float m_SplashDelay = 2f;
@@ -44,7 +47,11 @@ namespace HyperCasual.Gameplay
         public IState m_CurrentLevel;
 
         SceneController m_SceneController;
-        
+
+        public void Update()
+        {
+            Debug.Log(m_StateMachine.CurrentState.GetType().Name);
+        }
         /// <summary>
         /// Initializes the SequenceManager
         /// </summary>
@@ -134,10 +141,13 @@ namespace HyperCasual.Gameplay
         {
             //Create states
             m_LevelStates.Add(loadLevelState);
+
             var gameplayState = new State(() => OnGamePlayStarted(loadLevelState));
+
             var winState = new PauseState(() => OnWinScreenDisplayed(loadLevelState));
             var loseState = new PauseState(ShowUI<GameoverScreen>);
             var pauseState = new PauseState(ShowUI<PauseMenu>);
+            var pauseShopState = new PauseShopState(ShowUI<PauseShopMenu>);
             var unloadLose = new UnloadLastSceneState(m_SceneController);
             var unloadPause = new UnloadLastSceneState(m_SceneController);
 
@@ -155,10 +165,19 @@ namespace HyperCasual.Gameplay
 
             pauseState.AddLink(new EventLink(m_ContinueEvent, gameplayState));
             pauseState.AddLink(new EventLink(m_BackEvent, unloadPause));
+            pauseState.AddLink(new EventLink(m_PauseShopOpenEvent, pauseShopState));
             unloadPause.AddLink(new Link(m_MainMenuState));
-            
+
+            pauseShopState.AddLink(new EventLink(m_ContinueEvent, gameplayState));
+
             return winState;
         }
+
+        private void OnPauseShopOpened()
+        {
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// Changes the starting gameplay level in the sequence of levels by making a slight change to its links
@@ -201,7 +220,6 @@ namespace HyperCasual.Gameplay
             ShowUI<LevelSelectionScreen>();
             AudioManager.Instance.PlayMusic(SoundID.MenuMusic);
         }
-        
         void OnGamePlayStarted(IState current)
         {
             m_CurrentLevel = current;

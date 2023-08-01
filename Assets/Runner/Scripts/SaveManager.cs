@@ -23,12 +23,17 @@ namespace HyperCasual.Runner
         const string k_Xp = "Xp";
         const string k_AudioSettings = "AudioSettings";
         const string k_QualityLevel = "QualityLevel";
+        const string k_BackpackCapacity = "BackpackCapacity";
 
         void Awake()
         {
             s_Instance = this;
         }
-
+        public int BackpackCapacity
+        {
+            get => PlayerPrefs.GetInt(k_BackpackCapacity);
+            set => PlayerPrefs.SetInt(k_BackpackCapacity, value);
+        }
         /// <summary>
         /// Save and load level progress as an integer
         /// </summary>
