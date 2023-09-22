@@ -35,6 +35,8 @@ namespace HyperCasual.Gameplay
         AbstractGameEvent m_PauseEvent;
         [SerializeField]
         AbstractGameEvent m_PauseShopOpenEvent;
+        [SerializeField]
+        AbstractGameEvent m_GoToSkinsEvent;
         [Header("Other")]
         [SerializeField]
         float m_SplashDelay = 2f;
@@ -148,12 +150,13 @@ namespace HyperCasual.Gameplay
             var loseState = new PauseState(ShowUI<GameoverScreen>);
             var pauseState = new PauseState(ShowUI<PauseMenu>);
             var pauseShopState = new PauseShopState(ShowUI<PauseShopMenu>);
+            var skinsShopState = new SkinsShopState(ShowUI<SkinsShopMenu>);
             var unloadLose = new UnloadLastSceneState(m_SceneController);
             var unloadPause = new UnloadLastSceneState(m_SceneController);
 
             //Connect the states
             lastState?.AddLink(new EventLink(m_ContinueEvent, loadLevelState));
-            loadLevelState.AddLink(new Link(gameplayState));
+            loadLevelState.AddLink(new Link(pauseShopState));
 
             gameplayState.AddLink(new EventLink(m_WinEvent, winState));
             gameplayState.AddLink(new EventLink(m_LoseEvent, loseState));
@@ -169,6 +172,7 @@ namespace HyperCasual.Gameplay
             unloadPause.AddLink(new Link(m_MainMenuState));
 
             pauseShopState.AddLink(new EventLink(m_ContinueEvent, gameplayState));
+            pauseShopState.AddLink(new EventLink(m_GoToSkinsEvent, skinsShopState));
 
             return winState;
         }
@@ -186,7 +190,7 @@ namespace HyperCasual.Gameplay
         public void SetStartingLevel(int index)
         {
             m_LevelSelectState.RemoveAllLinks();
-            m_LevelSelectState.AddLink( new EventLink(m_ContinueEvent, m_LevelStates[index]));
+            m_LevelSelectState.AddLink(new EventLink(m_ContinueEvent, m_LevelStates[index]));
             m_LevelSelectState.AddLink(new EventLink(m_BackEvent, m_MainMenuState)); 
             m_LevelSelectState.EnableLinks();
         }

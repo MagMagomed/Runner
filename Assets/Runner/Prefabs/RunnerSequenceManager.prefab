@@ -67,6 +67,7 @@ MonoBehaviour:
   m_PauseEvent: {fileID: 11400000, guid: 4bbf7a853b87f44299489a25eb0d9ce5, type: 2}
   m_PauseShopOpenEvent: {fileID: 11400000, guid: 3c9a571c0323d1c4aa4bb0a6a9450012,
     type: 2}
+  m_GoToSkinsEvent: {fileID: 11400000, guid: 1a17a5d7a0709a94da1c27bb47bcd691, type: 2}
   m_SplashDelay: 1
 --- !u!114 &3832517329008096586
 MonoBehaviour:

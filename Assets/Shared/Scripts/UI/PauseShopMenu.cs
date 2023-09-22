@@ -14,10 +14,15 @@ public class PauseShopMenu : View
     HyperCasualButton m_Play;
     [SerializeField]
     AbstractGameEvent m_PlayEvent;
+    [SerializeField]
+    HyperCasualButton m_SkinsButton;
+    [SerializeField]
+    AbstractGameEvent m_GoToSkinsEvent;
     void OnEnable()
     {
         m_AddCapacityButton.AddListener(OnAddCapacityClicked);
         m_Play.AddListener(OnClickPlayButton);
+        m_SkinsButton.AddListener(OnClickSkinsButton);
     }
     void OnDisable()
     {
@@ -31,5 +36,9 @@ public class PauseShopMenu : View
     private void OnClickPlayButton()
     {
         m_PlayEvent.Raise();
+    }
+    private void OnClickSkinsButton()
+    {
+        m_GoToSkinsEvent.Raise();
     }
 }
