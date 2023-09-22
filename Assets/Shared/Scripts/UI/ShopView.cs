@@ -13,7 +13,8 @@ namespace HyperCasual.Runner
     {
         [SerializeField]
         HyperCasualButton m_Button;
-
+        [SerializeField]
+        AbstractGameEvent m_BackEvent;
         void OnEnable()
         {
             m_Button.AddListener(OnButtonClick);
@@ -26,7 +27,7 @@ namespace HyperCasual.Runner
 
         void OnButtonClick()
         {
-            UIManager.Instance.GoBack();
+            m_BackEvent.Raise();
         }
     }
 }

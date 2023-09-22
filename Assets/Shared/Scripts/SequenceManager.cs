@@ -153,6 +153,7 @@ namespace HyperCasual.Gameplay
             var skinsShopState = new SkinsShopState(ShowUI<SkinsShopMenu>);
             var unloadLose = new UnloadLastSceneState(m_SceneController);
             var unloadPause = new UnloadLastSceneState(m_SceneController);
+            var unloadskinsShop = new UnloadLastSceneState(m_SceneController);
 
             //Connect the states
             lastState?.AddLink(new EventLink(m_ContinueEvent, loadLevelState));
@@ -174,6 +175,7 @@ namespace HyperCasual.Gameplay
             pauseShopState.AddLink(new EventLink(m_ContinueEvent, gameplayState));
             pauseShopState.AddLink(new EventLink(m_GoToSkinsEvent, skinsShopState));
 
+            skinsShopState.AddLink(new EventLink(m_BackEvent, pauseShopState));
             return winState;
         }
 
