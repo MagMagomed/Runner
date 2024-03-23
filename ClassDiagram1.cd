@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HyperCasual.Gameplay.SequenceManager" Collapsed="true">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAaACQCEAwgAAQAYCQqAEAAAgCAABAQrAAAAAgCCABA=</HashCode>
+      <FileName>Assets\Shared\Scripts\SequenceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HyperCasual.Core.AbstractGameEvent" Collapsed="true">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABJAAAAAEAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Core\Scripts\EventSystem\AbstractGameEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HyperCasual.Core.SceneController" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAKAAAgAAAAAACAAAAAAEAAAQAAABAAAAAAA=</HashCode>
+      <FileName>Assets\Core\Scripts\Utils\SceneController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

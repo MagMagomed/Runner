@@ -11,7 +11,7 @@ public class GridMenuPopulator : MonoBehaviour
     void Start()
     {
         // Создаем несколько элементов меню для примера
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 9; i++)
         {
             // Создаем экземпляр префаба элемента меню
             GameObject menuItem = Instantiate(menuItemPrefab, transform);
