@@ -27,7 +27,14 @@ namespace HyperCasual.Runner
 
         void Awake()
         {
-            s_Instance = this;
+            if (s_Instance == null)
+            { 
+                s_Instance = this; 
+            }
+            else if (s_Instance == this)
+            { 
+                Destroy(gameObject);
+            }
         }
         public int BackpackCapacity
         {
