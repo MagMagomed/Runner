@@ -10,14 +10,11 @@ namespace HyperCasual.Runner
     /// A simple class used to save a load values
     /// using PlayerPrefs.
     /// </summary>
-    public class SaveManager : MonoBehaviour
+    public class SaveManager : AbstractSingleton<SaveManager>
     {
         /// <summary>
         /// Returns the SaveManager.
         /// </summary>
-        public static SaveManager Instance => s_Instance;
-        static SaveManager s_Instance;
-
         const string k_LevelProgress = "LevelProgress";
         const string k_Currency = "Currency";
         const string k_Xp = "Xp";
@@ -25,17 +22,6 @@ namespace HyperCasual.Runner
         const string k_QualityLevel = "QualityLevel";
         const string k_BackpackCapacity = "BackpackCapacity";
 
-        void Awake()
-        {
-            if (s_Instance == null)
-            { 
-                s_Instance = this; 
-            }
-            else if (s_Instance == this)
-            { 
-                Destroy(gameObject);
-            }
-        }
         public int BackpackCapacity
         {
             get => PlayerPrefs.GetInt(k_BackpackCapacity);
