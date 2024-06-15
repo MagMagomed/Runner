@@ -281,6 +281,17 @@ namespace HyperCasual.Runner
             };
             TerrainGenerator.CreateTerrain(terrainDimensions, levelDefinition.TerrainMaterial, ref terrainGameObject);
         }
+        public void StartFinishAnimation()
+        {
+            m_WinEvent.Raise();
+
+#if UNITY_EDITOR
+            if (m_LevelEditorMode)
+            {
+                ResetLevel();
+            }
+#endif
+        }
 
         public void Win()
         {
